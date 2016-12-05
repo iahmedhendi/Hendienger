@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">Hendienger</string>
+    <string name="login">Login</string>
+    <string name="hello">hello</string>
+    <string name="user_email">Email</string>
+    <string name="user_password">Password</string>
+    <string name="don_t_have_an_account_signup">Don\'t have an account ? SIGNUP</string>
+    <string name="login_btn">Login</string>
+    <string name="login_loading">Login ...</string>
+    <string name="user_name">Username</string>
+    <string name="already_have_account">Already have an account? LOGIN</string>
+    <string name="register">Sign UP</string>
+    <string name="signup">Signup</string>
+    <string name="repeat_password">Repeat Password</string>
+    <string name="wait">Wait ..</string>
+    <string name="title_activity_main">Main</string>
+    <string name="enter_email">Please Enter Email !</string>
+    <string name="enter_valid_email">Please Enter A valid Email !</string>
+    <string name="enter_password">Please Enter Password !</string>
+    <string name="enter_username">Please Enter Username !</string>
+    <string name="enter_password_again">Please Enter Password Again!</string>
+    <string name="password_isnt_equal">Password isn\'t same !</string>
+</resources>
