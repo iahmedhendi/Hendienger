@@ -36,3 +36,4 @@ dependencies {
 
 }
 apply plugin: 'com.jakewharton.butterknife'
+apply plugin: 'realm-android'

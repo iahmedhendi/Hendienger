@@ -11,12 +11,24 @@
     tools:showIn="@layout/activity_main">
 
     <TextView
-        android:textSize="28sp"
-        android:gravity="center"
-        android:textColor="#000"
-        android:text="Welcome !"
-        android:layout_centerInParent="true"
+        android:id="@+id/tv_welcome"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:text="Welcome !"
+        android:textColor="#000"
+        android:textSize="28sp" />
+
+    <TextView
+        android:id="@+id/tv_username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_welcome"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:text=""
+        android:textColor="#000"
+        android:textSize="14sp" />
 
 </RelativeLayout>

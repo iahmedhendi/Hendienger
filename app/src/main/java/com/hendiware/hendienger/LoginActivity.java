@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.fourhcode.forhutils.FUtilsValidation;
 import com.hendiware.hendienger.models.MainResponse;
 import com.hendiware.hendienger.models.User;
+import com.hendiware.hendienger.utils.Session;
 import com.hendiware.hendienger.webservices.WebService;
 
 import butterknife.BindView;
@@ -78,7 +79,7 @@ public class LoginActivity extends AppCompatActivity {
                         ) {
                     setLoadingMode();
                     // create new user
-                    User user = new User();
+                    final User user = new User();
                     user.email = etEmail.getText().toString();
                     user.password = etPassword.getText().toString();
                     // login User using Retrofit
@@ -91,6 +92,7 @@ public class LoginActivity extends AppCompatActivity {
 
                             } else if (response.body().status == 1) {
                                 Toast.makeText(LoginActivity.this, response.body().message, Toast.LENGTH_SHORT).show();
+                                Session.getInstance().loginUser(user);
                                 Intent goToMain = new Intent(LoginActivity.this, MainActivity.class);
                                 startActivity(goToMain);
                                 finish();
@@ -100,6 +102,8 @@ public class LoginActivity extends AppCompatActivity {
                             }
                             setNormalMode();
                         }
+
+
 
                         @Override
                         public void onFailure(Call<MainResponse> call, Throwable t) {
