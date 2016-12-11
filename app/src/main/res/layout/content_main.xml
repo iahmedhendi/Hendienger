@@ -10,25 +10,9 @@
     tools:context="com.hendiware.hendienger.MainActivity"
     tools:showIn="@layout/activity_main">
 
-    <TextView
-        android:id="@+id/tv_welcome"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_chat_rooms"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:gravity="center"
-        android:text="Welcome !"
-        android:textColor="#000"
-        android:textSize="28sp" />
-
-    <TextView
-        android:id="@+id/tv_username"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/tv_welcome"
-        android:layout_centerInParent="true"
-        android:gravity="center"
-        android:text=""
-        android:textColor="#000"
-        android:textSize="14sp" />
+        android:layout_height="match_parent" />
 
 </RelativeLayout>

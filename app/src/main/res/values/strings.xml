@@ -20,4 +20,17 @@
     <string name="enter_username">Please Enter Username !</string>
     <string name="enter_password_again">Please Enter Password Again!</string>
     <string name="password_isnt_equal">Password isn\'t same !</string>
+    <string name="android_developer">Android Developer</string>
+    <string name="android_developers_community_discuss_hot_topics_in_android">Android Developers Community discuss hot topics in Android</string>
+    <string name="welcome">"Welcome "</string>
+    <string name="nice_to_meet_you">Nice to meet you</string>
+    <string name="nice_to_meet_you_admin">Nice to meet you Admin !</string>
+    <string name="logout">Logout</string>
+
+
+    <string name="room_name">Room Name</string>
+    <string name="room_desc">Room Description</string>
+    <string name="add">Add</string>
+    <string name="please_enter_room_name">Please Enter Room Name</string>
+    <string name="please_enter_room_desc">Please Enter Romm Desc</string>
 </resources>

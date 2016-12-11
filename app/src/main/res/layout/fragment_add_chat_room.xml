@@ -1,0 +1,84 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorPrimary"
+    android:minWidth="250dp"
+    tools:context="com.hendiware.hendienger.fragments.AddChatRoomFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/lnlt_body"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="10dp"
+            android:visibility="visible">
+
+            <EditText
+                android:id="@+id/et_room_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/room_name"
+                android:textColor="@color/colorWhite"
+                android:textColorHint="@color/colorWhiteOverlay"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/et_room_desc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:hint="@string/room_desc"
+                android:textColor="@color/colorWhite"
+                android:textColorHint="@color/colorWhiteOverlay"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/btn_add_room"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="20dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/btn_login_bg"
+                android:paddingEnd="40dp"
+                android:paddingLeft="40dp"
+                android:paddingRight="40dp"
+                android:paddingStart="40dp"
+                android:text="@string/add"
+                android:textColor="@color/colorPrimaryDark" />
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/rllt_loading"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:visibility="gone">
+
+            <ProgressBar
+                android:id="@+id/prgs_loading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/prgs_loading"
+                android:layout_marginTop="25dp"
+                android:gravity="center"
+                android:text="Adding Room Please Wait ..."
+                android:textColor="@color/colorWhite"
+                android:textSize="14sp" />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</FrameLayout>

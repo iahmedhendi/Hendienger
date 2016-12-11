@@ -14,16 +14,12 @@ import io.realm.RealmConfiguration;
  */
 
 public class Session {
+    // define single instance
     private static Session instance;
+    // define realm
     private Realm realm;
 
-    public static Session getInstance() {
-        if (instance == null) {
-            instance = new Session();
-        }
-        return instance;
-    }
-
+    // Session constructor
     private Session() {
         RealmConfiguration realmConfig = new RealmConfiguration.Builder()
                 .deleteRealmIfMigrationNeeded()
@@ -31,6 +27,15 @@ public class Session {
         realm = Realm.getInstance(realmConfig);
     }
 
+    // get singletone from session
+    public static Session getInstance() {
+        if (instance == null) {
+            instance = new Session();
+        }
+        return instance;
+    }
+
+    // login user take user and add it to realm
     public void loginUser(final User user) {
 
         if (realm.where(User.class).findFirst() == null) {
@@ -50,6 +55,7 @@ public class Session {
 
     }
 
+    // logout
     public void logout() {
         realm.executeTransaction(new Realm.Transaction() {
             @Override

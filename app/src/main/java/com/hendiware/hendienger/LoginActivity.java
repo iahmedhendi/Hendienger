@@ -15,7 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.fourhcode.forhutils.FUtilsValidation;
-import com.hendiware.hendienger.models.MainResponse;
+import com.hendiware.hendienger.models.LoginResponse;
 import com.hendiware.hendienger.models.User;
 import com.hendiware.hendienger.utils.Session;
 import com.hendiware.hendienger.webservices.WebService;
@@ -83,15 +83,17 @@ public class LoginActivity extends AppCompatActivity {
                     user.email = etEmail.getText().toString();
                     user.password = etPassword.getText().toString();
                     // login User using Retrofit
-                    WebService.getInstance().getApi().loginUser(user).enqueue(new Callback<MainResponse>() {
+                    WebService.getInstance().getApi().loginUser(user).enqueue(new Callback<LoginResponse>() {
                         @Override
-                        public void onResponse(Call<MainResponse> call, Response<MainResponse> response) {
+                        public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
                             // check for status value comming from server (response of login-user.php file status)
                             if (response.body().status == 2) {
                                 Toast.makeText(LoginActivity.this, response.body().message, Toast.LENGTH_SHORT).show();
-
                             } else if (response.body().status == 1) {
                                 Toast.makeText(LoginActivity.this, response.body().message, Toast.LENGTH_SHORT).show();
+                                user.username = response.body().user.user_name;
+                                user.id = Integer.parseInt(response.body().user.id);
+                                user.isAdmin = response.body().user.is_user_admin.equals("1");
                                 Session.getInstance().loginUser(user);
                                 Intent goToMain = new Intent(LoginActivity.this, MainActivity.class);
                                 startActivity(goToMain);
@@ -104,9 +106,8 @@ public class LoginActivity extends AppCompatActivity {
                         }
 
 
-
                         @Override
-                        public void onFailure(Call<MainResponse> call, Throwable t) {
+                        public void onFailure(Call<LoginResponse> call, Throwable t) {
                             // print error message in logcat
                             Log.e(TAG, t.getLocalizedMessage());
 
