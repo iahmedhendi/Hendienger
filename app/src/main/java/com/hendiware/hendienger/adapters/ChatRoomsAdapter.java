@@ -1,6 +1,7 @@
 package com.hendiware.hendienger.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.hendiware.hendienger.R;
+import com.hendiware.hendienger.activities.ChatActivity;
 import com.hendiware.hendienger.models.ChatRoom;
 
 import java.util.List;
@@ -44,10 +46,20 @@ public class ChatRoomsAdapter extends
     @Override
     public void onBindViewHolder(ChatRoomHolder holder, int position) {
         // get room
-        ChatRoom room = chatRooms.get(position);
+        final ChatRoom room = chatRooms.get(position);
         // set room data for row
         holder.tvTitle.setText(room.room_name);
         holder.tvDesc.setText(room.room_desc);
+        // start chat activity
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, ChatActivity.class);
+                intent.putExtra("room_id", Integer.parseInt(room.id));
+                intent.putExtra("room_name", room.room_name);
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override

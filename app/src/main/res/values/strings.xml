@@ -33,4 +33,5 @@
     <string name="add">Add</string>
     <string name="please_enter_room_name">Please Enter Room Name</string>
     <string name="please_enter_room_desc">Please Enter Romm Desc</string>
+    <string name="title_activity_chat">ChatActivity</string>
 </resources>

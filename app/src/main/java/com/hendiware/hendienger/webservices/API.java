@@ -3,6 +3,7 @@ package com.hendiware.hendienger.webservices;
 import com.hendiware.hendienger.models.ChatRoom;
 import com.hendiware.hendienger.models.LoginResponse;
 import com.hendiware.hendienger.models.MainResponse;
+import com.hendiware.hendienger.models.Message;
 import com.hendiware.hendienger.models.User;
 
 import java.util.List;
@@ -34,6 +35,13 @@ public interface API {
 
     @POST("get-all-chat-rooms.php")
     Call<List<ChatRoom>> getAllChatRooms();
+
+    @POST("add-message.php")
+    Call<MainResponse> addMessage(@Body Message message);
+
+    @FormUrlEncoded
+    @POST("get-messages.php")
+    Call<List<Message>> getMessages(@Field("room_id") int roomId);
 
 }
 

@@ -58,6 +58,13 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
+
+        if (getIntent() != null) {
+            String email = getIntent().getStringExtra("email");
+            String pass = getIntent().getStringExtra("pass");
+            etEmail.setText(email);
+            etPassword.setText(pass);
+        }
     }
 
     @OnClick({R.id.tv_dont_have_account, R.id.btn_login})

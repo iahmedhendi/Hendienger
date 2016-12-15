@@ -84,7 +84,7 @@ public class RegisterActivity extends AppCompatActivity {
                         ) {
                     setLoadingMode();
                     // create new user object and set data from editTexts
-                    User user = new User();
+                    final User user = new User();
                     user.username = etUsername.getText().toString();
                     user.email = etEmail.getText().toString();
                     user.password = etPassword.getText().toString();
@@ -96,8 +96,11 @@ public class RegisterActivity extends AppCompatActivity {
                                 Toast.makeText(RegisterActivity.this, response.body().message, Toast.LENGTH_SHORT).show();
                             } else if (response.body().status == 1) {
                                 Toast.makeText(RegisterActivity.this, response.body().message, Toast.LENGTH_SHORT).show();
-                                Intent goToMain = new Intent(RegisterActivity.this, MainActivity.class);
-                                startActivity(goToMain);
+                                // go to login activity
+                                Intent gotToLogin = new Intent(RegisterActivity.this, LoginActivity.class);
+                                gotToLogin.putExtra("email", user.email);
+                                gotToLogin.putExtra("pass", user.password);
+                                startActivity(gotToLogin);
                                 finish();
                             } else {
                                 Toast.makeText(RegisterActivity.this, response.body().message, Toast.LENGTH_SHORT).show();

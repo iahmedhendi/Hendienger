@@ -7,4 +7,5 @@
     <color name="colorWhiteOverlay">#afffffff</color>
     <color name="colorTextDesc">#7D7D7D</color>
     <color name="colorDivider">#E9E9E9</color>
+    <color name="colorDarkGray">#494949</color>
 </resources>
