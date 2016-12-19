@@ -114,6 +114,11 @@ public class Message implements Parcelable {
         this.timestamp = timestamp;
     }
 
+    /**
+     * Method convert time stamp to hourly time ;
+     *
+     * @return time like 07:20 AM from time 2017 8 1 20:12
+     */
     public String getTime() {
         if (timestamp == null) {
             return "now";
