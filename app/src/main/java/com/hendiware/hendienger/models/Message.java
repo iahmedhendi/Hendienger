@@ -1,5 +1,8 @@
 package com.hendiware.hendienger.models;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.SerializedName;
 
 import java.text.ParseException;
@@ -14,8 +17,19 @@ import java.util.TimeZone;
  * Created by hendiware on 2016/12 .
  */
 
-public class Message {
+public class Message implements Parcelable {
 
+    public static final Creator<Message> CREATOR = new Creator<Message>() {
+        @Override
+        public Message createFromParcel(Parcel in) {
+            return new Message(in);
+        }
+
+        @Override
+        public Message[] newArray(int size) {
+            return new Message[size];
+        }
+    };
     @SerializedName("id")
     private String id;
     @SerializedName("room_id")
@@ -30,6 +44,19 @@ public class Message {
     private String content;
     @SerializedName("timestamp")
     private String timestamp;
+
+    public Message() {
+    }
+
+    protected Message(Parcel in) {
+        id = in.readString();
+        roomId = in.readString();
+        userId = in.readString();
+        username = in.readString();
+        type = in.readString();
+        content = in.readString();
+        timestamp = in.readString();
+    }
 
     public String getId() {
         return id;
@@ -112,5 +139,21 @@ public class Message {
         }
 
 
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(id);
+        dest.writeString(roomId);
+        dest.writeString(userId);
+        dest.writeString(username);
+        dest.writeString(type);
+        dest.writeString(content);
+        dest.writeString(timestamp);
     }
 }

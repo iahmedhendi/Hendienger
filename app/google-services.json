@@ -1,0 +1,73 @@
+{
+  "project_info": {
+    "project_number": "1049266371021",
+    "firebase_url": "https://androidapps-9d61f.firebaseio.com",
+    "project_id": "androidapps-9d61f",
+    "storage_bucket": "androidapps-9d61f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1049266371021:android:2531c90cd0481fef",
+        "android_client_info": {
+          "package_name": "com.tgwal.haflaty.haflaty"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1049266371021-vqs2uqa5154mq7i4t4rqaah6gch9q461.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBujIOLz4usw3OTUo0afL2wW0XuHBZO2Ts"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1049266371021:android:7786d34336ed0494",
+        "android_client_info": {
+          "package_name": "com.hendiware.hendienger"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1049266371021-vqs2uqa5154mq7i4t4rqaah6gch9q461.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBujIOLz4usw3OTUo0afL2wW0XuHBZO2Ts"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

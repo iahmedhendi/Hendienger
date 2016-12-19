@@ -1,10 +1,15 @@
 package com.hendiware.hendienger.activities;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
@@ -13,6 +18,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.hendiware.hendienger.R;
 import com.hendiware.hendienger.adapters.MessagingAdapter;
 import com.hendiware.hendienger.models.MainResponse;
@@ -52,6 +58,18 @@ public class ChatActivity extends AppCompatActivity {
     private String username;
     private MessagingAdapter adapter;
     private List<Message> messages;
+    private BroadcastReceiver messageReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            Message message = intent.getParcelableExtra("msg");
+            if (message != null) {
+                messages.add(message);
+                adapter.notifyItemInserted(messages.size() - 1);
+                recyclerChat.scrollToPosition(messages.size() - 1);
+            }
+
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +78,8 @@ public class ChatActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+
         // get room ID and room name
         roomId = getIntent().getExtras().getInt("room_id");
         roomName = getIntent().getExtras().getString("room_name");
@@ -78,6 +98,9 @@ public class ChatActivity extends AppCompatActivity {
         // get messages
         getMessages(roomId);
 
+        FirebaseMessaging.getInstance().subscribeToTopic("room" + roomId);
+        Log.e("room topic is ", "room" + roomId);
+
 
     }
 
@@ -94,6 +117,8 @@ public class ChatActivity extends AppCompatActivity {
                 messages = response.body();
                 adapter = new MessagingAdapter(messages, ChatActivity.this);
                 recyclerChat.setAdapter(adapter);
+                recyclerChat.scrollToPosition(messages.size() - 1);
+
 
             }
 
@@ -179,4 +204,20 @@ public class ChatActivity extends AppCompatActivity {
         if (item.getItemId() == android.R.id.home) finish();
         return super.onOptionsItemSelected(item);
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // register receiver to handle "" UPDATE CHAT ACTIVITY "" Filter
+        registerReceiver(messageReceiver, new IntentFilter("UpdateChateActivity"));
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        // unregister receiver
+        unregisterReceiver(messageReceiver);
+    }
+
+
 }
