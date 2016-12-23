@@ -35,6 +35,11 @@ public class Session {
         return instance;
     }
 
+    // get new Instance (new Object) from this class
+    public static Session newInstance() {
+        return new Session();
+    }
+
     // login user take user and add it to realm
     public void loginUser(final User user) {
 

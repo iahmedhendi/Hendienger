@@ -14,6 +14,7 @@
         android:id="@+id/recycler_chat"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginBottom="4dp"
         android:layout_weight="1"
         android:paddingBottom="2dp" />
 

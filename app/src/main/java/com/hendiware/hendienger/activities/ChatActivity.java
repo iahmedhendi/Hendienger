@@ -58,13 +58,23 @@ public class ChatActivity extends AppCompatActivity {
     private String username;
     private MessagingAdapter adapter;
     private List<Message> messages;
+    /**
+     * BroadCast Receiver message receiver when register it called when broadcast sent for the intent
+     * and execute code in the onReceive Method
+     */
     private BroadcastReceiver messageReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
+            // get message sent from broadcast
             Message message = intent.getParcelableExtra("msg");
+
+            // check if message is null
             if (message != null) {
+                // add message to messages list
                 messages.add(message);
+                // notify adapter that new message inserted to list in the last position (list size-1)
                 adapter.notifyItemInserted(messages.size() - 1);
+                // scroll to bottom of recycler show last message
                 recyclerChat.scrollToPosition(messages.size() - 1);
             }
 
@@ -79,7 +89,6 @@ public class ChatActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-
         // get room ID and room name
         roomId = getIntent().getExtras().getInt("room_id");
         roomName = getIntent().getExtras().getString("room_name");
@@ -87,6 +96,7 @@ public class ChatActivity extends AppCompatActivity {
         if (getSupportActionBar() != null) getSupportActionBar().setTitle(roomName);
         // display back button in toolbar
         if (getSupportActionBar() != null) getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         // get user id and username from session
         userId = Session.getInstance().getUser().id;
         username = Session.getInstance().getUser().username;
@@ -98,6 +108,7 @@ public class ChatActivity extends AppCompatActivity {
         // get messages
         getMessages(roomId);
 
+        // subscribe to topic of room (room+id)
         FirebaseMessaging.getInstance().subscribeToTopic("room" + roomId);
         Log.e("room topic is ", "room" + roomId);
 
@@ -114,9 +125,13 @@ public class ChatActivity extends AppCompatActivity {
         WebService.getInstance().getApi().getMessages(roomId).enqueue(new Callback<List<Message>>() {
             @Override
             public void onResponse(Call<List<Message>> call, Response<List<Message>> response) {
+                // message comming from server
                 messages = response.body();
+                // create new adapter with these message
                 adapter = new MessagingAdapter(messages, ChatActivity.this);
+                // set adapter for recycler
                 recyclerChat.setAdapter(adapter);
+                // scroll to bottom of screen
                 recyclerChat.scrollToPosition(messages.size() - 1);
 
 
@@ -139,6 +154,7 @@ public class ChatActivity extends AppCompatActivity {
         WebService.getInstance().getApi().addMessage(message).enqueue(new Callback<MainResponse>() {
             @Override
             public void onResponse(Call<MainResponse> call, Response<MainResponse> response) {
+                // if status is 0 it mean there is error in add message and show toast to user
                 if (response.body().status == 0)
                     Toast.makeText(ChatActivity.this, "Error while trying to send message", Toast.LENGTH_SHORT).show();
 
@@ -146,6 +162,7 @@ public class ChatActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<MainResponse> call, Throwable t) {
+                // if there is other server error or error in conneciton show toast to user
                 Toast.makeText(ChatActivity.this, "Error " + t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
 
 

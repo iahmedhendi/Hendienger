@@ -17,6 +17,7 @@ import com.google.firebase.messaging.RemoteMessage;
 import com.hendiware.hendienger.R;
 import com.hendiware.hendienger.activities.ChatActivity;
 import com.hendiware.hendienger.models.Message;
+import com.hendiware.hendienger.utils.Session;
 
 import java.util.List;
 
@@ -25,9 +26,12 @@ public class FirebaseService extends FirebaseMessagingService {
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
         super.onMessageReceived(remoteMessage);
-
+        /**
+         * be sure that data size > 0
+         */
 
         if (remoteMessage.getData().size() > 0) {
+            // get values from data that sent from php by fcm
             Log.e("message content", remoteMessage.getData().get("message"));
             String messageContent = remoteMessage.getData().get("message");
             String roomId = remoteMessage.getData().get("room_id");
@@ -36,6 +40,7 @@ public class FirebaseService extends FirebaseMessagingService {
             String messageType = remoteMessage.getData().get("type");
             String timestamp = remoteMessage.getData().get("timestamp");
 
+            // Create new message and assign value to it
             Message message = new Message();
             message.setContent(messageContent);
             message.setRoomId(roomId);
@@ -44,14 +49,24 @@ public class FirebaseService extends FirebaseMessagingService {
             message.setType(messageType);
             message.setTimestamp(timestamp);
 
-            if (isAppIsInBackground(this)) {
-                sendNotification(message);
-            } else {
-                Intent intent = new Intent("UpdateChateActivity");
-                intent.putExtra("msg", message);
-                sendBroadcast(intent);
+            // check if the sender of message is current user or not
+            if (!(Integer.valueOf(userId) == Session.newInstance().getUser().id)) {
 
+                // check if app in background or not
+
+                if (isAppIsInBackground(this)) {
+                    // app is in background show notification to user
+                    sendNotification(message);
+                } else {
+                    // app is forground and user see it now send broadcast to update chat
+                    // you can send broadcast to do anything if you want !
+                    Intent intent = new Intent("UpdateChateActivity");
+                    intent.putExtra("msg", message);
+                    sendBroadcast(intent);
+
+                }
             }
+
 
         }
 
