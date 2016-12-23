@@ -32,6 +32,7 @@ public class ChatRoomsAdapter extends
 
     // constructor
     public ChatRoomsAdapter(List<ChatRoom> chatRooms, Context context) {
+
         this.chatRooms = chatRooms;
         this.context = context;
     }

@@ -19,6 +19,7 @@ import java.util.TimeZone;
 
 public class Message implements Parcelable {
 
+
     public static final Creator<Message> CREATOR = new Creator<Message>() {
         @Override
         public Message createFromParcel(Parcel in) {
@@ -30,6 +31,8 @@ public class Message implements Parcelable {
             return new Message[size];
         }
     };
+
+
     @SerializedName("id")
     private String id;
     @SerializedName("room_id")
@@ -57,6 +60,7 @@ public class Message implements Parcelable {
         content = in.readString();
         timestamp = in.readString();
     }
+
 
     public String getId() {
         return id;
