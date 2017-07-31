@@ -28,10 +28,7 @@ import retrofit2.Response;
 
 public class RegisterActivity extends AppCompatActivity {
     private final String TAG = "RegisterActivity";
-    @BindView(R.id.img_header_logo)
-    ImageView imgHeaderLogo;
-    @BindView(R.id.tv_login)
-    TextView tvLogin;
+    
     @BindView(R.id.et_username)
     EditText etUsername;
     @BindView(R.id.et_email)
@@ -40,8 +37,6 @@ public class RegisterActivity extends AppCompatActivity {
     EditText etPassword;
     @BindView(R.id.et_repeat_password)
     EditText etRepeatPassword;
-    @BindView(R.id.lnlt_inputs_container)
-    LinearLayout lnltInputsContainer;
     @BindView(R.id.tv_already_have_account)
     TextView tvAlreadyHaveAccount;
     @BindView(R.id.btn_signup)
@@ -52,16 +47,12 @@ public class RegisterActivity extends AppCompatActivity {
     ProgressBar prgsLoading;
     @BindView(R.id.rllt_loading)
     RelativeLayout rlltLoading;
-    @BindView(R.id.activity_login)
-    RelativeLayout activityLogin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         ButterKnife.bind(this);
-
-
     }
 
     @OnClick({R.id.tv_already_have_account, R.id.btn_signup})
@@ -72,8 +63,8 @@ public class RegisterActivity extends AppCompatActivity {
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
                 this.overridePendingTransition(R.anim.enter_from_right, R.anim.exit_out_left);
-
                 break;
+                
             case R.id.btn_signup:
                 if (!FUtilsValidation.isEmpty(etUsername, getString(R.string.enter_username))
                         && !FUtilsValidation.isEmpty(etEmail, getString(R.string.enter_email))
@@ -114,7 +105,6 @@ public class RegisterActivity extends AppCompatActivity {
 
                         }
                     });
-
 
                 }
                 break;
