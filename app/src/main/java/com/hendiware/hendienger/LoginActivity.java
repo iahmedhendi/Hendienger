@@ -29,29 +29,19 @@ import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity {
     private final String TAG = "LoginActivity";
-
-    @BindView(R.id.img_header_logo)
-    ImageView imgHeaderLogo;
-    @BindView(R.id.tv_login)
-    TextView tvLogin;
+    
     @BindView(R.id.et_email)
     EditText etEmail;
     @BindView(R.id.et_password)
     EditText etPassword;
-    @BindView(R.id.lnlt_inputs_container)
-    LinearLayout lnltInputsContainer;
     @BindView(R.id.tv_dont_have_account)
     TextView tvDontHaveAccount;
     @BindView(R.id.btn_login)
     Button btnLogin;
     @BindView(R.id.rllt_body)
     RelativeLayout rlltBody;
-    @BindView(R.id.prgs_loading)
-    ProgressBar prgsLoading;
     @BindView(R.id.rllt_loading)
     RelativeLayout rlltLoading;
-    @BindView(R.id.activity_login)
-    RelativeLayout activityLogin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,7 +69,6 @@ public class LoginActivity extends AppCompatActivity {
 
                 break;
             case R.id.btn_login:
-
                 if (!FUtilsValidation.isEmpty(etEmail, getString(R.string.enter_email))
                         && FUtilsValidation.isValidEmail(etEmail, getString(R.string.enter_valid_email))
                         && !FUtilsValidation.isEmpty(etPassword, getString(R.string.enter_password))
@@ -91,6 +80,7 @@ public class LoginActivity extends AppCompatActivity {
                     user.password = etPassword.getText().toString();
                     // login User using Retrofit
                     WebService.getInstance().getApi().loginUser(user).enqueue(new Callback<LoginResponse>() {
+                        
                         @Override
                         public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
                             // check for status value comming from server (response of login-user.php file status)
@@ -112,7 +102,6 @@ public class LoginActivity extends AppCompatActivity {
                             setNormalMode();
                         }
 
-
                         @Override
                         public void onFailure(Call<LoginResponse> call, Throwable t) {
                             // print error message in logcat
@@ -121,10 +110,8 @@ public class LoginActivity extends AppCompatActivity {
                         }
                     });
 
-
                 }
                 break;
-
         }
     }
 
