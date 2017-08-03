@@ -104,6 +104,7 @@ public class ChatActivity extends AppCompatActivity {
         // set layoutmanager for chat recycler
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerChat.setLayoutManager(layoutManager);
+        recyclerChat.setHasFixedSize(true);
 
         // get messages
         getMessages(roomId);
