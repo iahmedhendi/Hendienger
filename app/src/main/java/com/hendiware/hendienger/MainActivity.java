@@ -128,6 +128,7 @@ public class MainActivity extends AppCompatActivity {
 
         progress = FUtilsProgress.newProgress(this, contentMain);
         recyclerChatRooms.setLayoutManager(new LinearLayoutManager(this));
+        recyclerChatRooms.setHasFixedSize(true);
 
         // get chat rooms and view them
         getChatRooms();
